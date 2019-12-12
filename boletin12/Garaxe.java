@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class Garaxe {
     
-    private int numeroCoches=0;
+    private int numeroCoches;
     private String matricula;
-    private int plazasGaraxe=2;
-    private int tiempoEstacionado;
+    private int plazasGaraxe;
+    private int tiempoAparcado;
     private double precio;
-    private double dineroRecibido;
+    private double dineroPagado;
     
     public Garaxe(){                
     }
@@ -35,9 +35,7 @@ public class Garaxe {
     public void setNumeroCoches(int p_numeroCoches) {
         
         comprobarGaraxe(p_numeroCoches);
-        this.numeroCoches = numeroCoches;
-        
-        
+        numeroCoches = numeroCoches;                
     }
 
     public String getMatricula() {
@@ -62,45 +60,47 @@ public class Garaxe {
     //e rexistramos o coche . No caso contrario poríamos unha mensaxe “ 
     //COMPLETO “.
     public void comprobarGaraxe(int p_numeroCoches){
-       plazasGaraxe =1;
-        System.out.println("Coche nuevo ");
-        
-                
+       plazasGaraxe =5;
+        System.out.println("Coche nuevo ");                        
             if (plazasGaraxe == numeroCoches){            
-                System.out.println("Garaxe cheo");            
+                System.out.println("garaje lleno");            
             }else{
-                System.out.println("Plazas Dispoñibles");
+                System.out.println("Plazas Disponibles");
                 numeroCoches++;
             }                         
-        }
-     public int setHorasEstacionado(){
+    }
+     public int setHorasAparcado(){
           do{
-            tiempoEstacionado = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero de horas que el vehiculo paso estacionado"));
-            if(tiempoEstacionado <= 0)
+            tiempoAparcado = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero de horas que el vehiculo paso estacionado"));
+            if(tiempoAparcado <= 0)
                 JOptionPane.showMessageDialog(null,"El numero introducido es incorrecto. intentalo de nuevo");
-        }while(tiempoEstacionado <= 0);    
-        return tiempoEstacionado;    
+        }while(tiempoAparcado <= 0);    
+        return tiempoAparcado;    
     }
-      public double pagar(){
+      public double realizarPago(){
         do {
-            dineroRecibido = Double.parseDouble(JOptionPane.showInputDialog("El total a pagar es de: " +precio+ "\nIntroduce la cantidad de dinero entregada por el cliente"));
-            if (dineroRecibido < precio)
-                JOptionPane.showMessageDialog(null,"El importe dado por el cliente es menor que el precio a pagar. Intentalo de nuevo");
-        }while (dineroRecibido < precio);
-        return dineroRecibido;
+            dineroPagado = Double.parseDouble(JOptionPane.showInputDialog("El total a pagar es de: " +precio+ "\ncantidad de dinero entregada por el cliente"));
+            if (dineroPagado < precio)
+                JOptionPane.showMessageDialog(null,"El importe es menor que el precio a pagar. Intentalo de nuevo");
+        }while (dineroPagado < precio);
+        return dineroPagado;
     }
+      
      public double calcularPrecio(){
-        if (tiempoEstacionado > 3)
-            precio = 1.5 + (tiempoEstacionado - 3) * 0.2; 
+        if (tiempoAparcado > 3)
+            precio = 1.5 + (tiempoAparcado - 3) * 0.2; 
         else{    
             precio = 1.5;
         }
         return precio;
     }
-     public void facturaSaida(){
-        setHorasEstacionado();calcularPrecio();pagar();
-        JOptionPane.showMessageDialog(null,"FACTURA: \nMatricula coche: " +matricula+ "\nTiempo: " +tiempoEstacionado+ "horas\nPrecio: "
-                +precio+ "€\nCartos recibidos: " +dineroRecibido+ "€\nCartos devoltos: " +(Math.round((dineroRecibido - precio)*100d)/100d)+ "€");
+     public void factura(){
+       /*LLamar metodos*/
+         setHorasAparcado();
+        calcularPrecio();
+        realizarPago();
+        JOptionPane.showMessageDialog(null,"\nMatricula coche: " +matricula+ "\nTiempo: " +tiempoAparcado+ "horas\nPrecio: "
+                +precio+ "€\nDinero recibidos: " +dineroPagado+ "€\nDinero devoltos: " +(Math.round((dineroPagado - precio)*100d)/100d)+ "€");
         
         
     }

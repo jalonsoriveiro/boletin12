@@ -23,7 +23,7 @@ public class Boletin12 {
     
     obj.setNumeroCoches(1);
     System.out.println(obj.getNumeroCoches());
-    obj.facturaSaida();
+    obj.factura();
     }
     
 }
