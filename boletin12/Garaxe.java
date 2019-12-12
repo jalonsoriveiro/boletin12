@@ -15,7 +15,7 @@ public class Garaxe {
     
     private int numeroCoches=0;
     private String matricula;
-    private int plazasGaraxe=0;
+    private int plazasGaraxe=2;
     public Garaxe(){                
     }
     public Garaxe(int p_numero_coches,String p_matricula){
@@ -58,10 +58,21 @@ public class Garaxe {
     //e rexistramos o coche . No caso contrario poríamos unha mensaxe “ 
     //COMPLETO “.
     public String comprobarGaraxe(int p_numeroCoches){
-       
+       plazasGaraxe =1;
         System.out.println("Coche nuevo ");
-//return numero;
+        
+                
+            if (plazasGaraxe == numeroCoches){            
+                System.out.println("Garaxe cheo");            
+            }else{
+                System.out.println("Plazas Dispoñibles");
+                numeroCoches++;
+            }
+        
+        
         return null;
+        
+        
         }
     
 }
